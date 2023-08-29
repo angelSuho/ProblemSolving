@@ -1,10 +1,8 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.StringTokenizer;
 
 public class Main {
-    
+
     static int N, M;
     static int[][] board;
     static int count = 0;
@@ -13,7 +11,7 @@ public class Main {
 
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(bf.readLine());
-        
+
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         board = new int[N][M];
@@ -30,11 +28,12 @@ public class Main {
             return;
         }
 
-        board[x][y] = 0;
-        if (y + 1 < M) bruteForce(x, y + 1);
-        else bruteForce(x + 1, 0);
+        settingBrute(x, y, 0);
+        settingBrute(x, y, 1);
+    }
 
-        board[x][y] = 1;
+    private static void settingBrute(int x, int y, int num) {
+        board[x][y] = num;
         if (y + 1 < M) bruteForce(x, y + 1);
         else bruteForce(x + 1, 0);
     }
@@ -50,8 +49,3 @@ public class Main {
         return false;
     }
 }
-
-
-
-
-
