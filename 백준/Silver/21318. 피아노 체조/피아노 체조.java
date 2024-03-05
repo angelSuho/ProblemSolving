@@ -39,8 +39,10 @@ public class Main {
             int y = Integer.parseInt(st.nextToken()) - 1;
 
             // 실수하는 곡의 개수 계산
+            // 누적합 x+1부터 계산되었으니 실질적으로 x와 y에 -1을 해주면서 y, x로 입력
             int mistake = accumulatedMistakes[y] - accumulatedMistakes[x];
             System.out.println(mistake);
         }
+        bf.close();
     }
 }
