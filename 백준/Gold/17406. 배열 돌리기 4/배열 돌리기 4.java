@@ -74,18 +74,38 @@ public class Main {
         int[] end = indexes.get(1);
 
         for (int idx = 0; idx < status.s; idx++) {
+            // s 크기만큼, 지속해서 안쪽까지 회전
             int top = start[0] + idx;
             int left = start[1] + idx;
             int bottom = end[0] - idx;
             int right = end[1] - idx;
 
             int temp = arr[top][left];
-
+            
+            // 1 2 3
+            // 4 5 6
+            // 7 8 9
+            
+            // 4 2 3
+            // 7 5 6
+            //   8 9
             for (int i = top; i < bottom; i++) arr[i][left] = arr[i + 1][left];
+            // 4 2 3
+            // 7 5 6
+            // 8 9
             for (int i = left; i < right; i++) arr[bottom][i] = arr[bottom][i + 1];
+            // 4 2
+            // 7 5 3
+            // 8 9 6
             for (int i = bottom; i > top; i--) arr[i][right] = arr[i - 1][right];
+            // 4   2
+            // 7 5 3
+            // 8 9 6
             for (int i = right; i > left; i--) arr[top][i] = arr[top][i - 1];
 
+            // 4 1 2
+            // 7 5 3
+            // 8 9 6
             arr[top][left + 1] = temp;
         }
     }
