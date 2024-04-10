@@ -14,7 +14,7 @@ class Solution {
             }
             
             for (int j = 0; j < wires.length; j++) {
-                if (i == j) { // 현재 전선을 제외
+                if (i == j) { // 전선 분리
                     continue;
                 }
                 tree.get(wires[j][0]).add(wires[j][1]);
@@ -22,8 +22,12 @@ class Solution {
             }
             
             boolean[] visited = new boolean[n + 1];
+            
+            // wires[i][0]: 끊어진 전선의 시작점
             int cnt = countTreeNodes(tree, visited, wires[i][0]);
-            answer = Math.min(answer, Math.abs(n - (2 * cnt)));
+            
+            // 최소 차이 비교
+            answer = Math.min(answer, Math.abs(cnt - (n - cnt)));
         }
         
         return answer;
